@@ -1,0 +1,773 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(33, 49%, 66%);
+  --first-color-alt: hsl(34, 32%, 76%);
+  --title-color: #FFF;
+  --text-color: #A9A9A9;
+  --body-color: hsl(240, 50%, 1%);
+  --border: .1rem solid rgba(255, 255, 255, .3);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Open Sans', sans-serif;
+  --second-font: 'Cinzel', serif;
+  --biggest-font-size: 2.25rem;
+  --normal-font-size: .938rem;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 3.5rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  transition: .2s linear;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  width: .5rem;
+  height: 5rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+  border-radius: 5rem;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--title-color);
+}
+
+section {
+  padding: 2rem 7%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  display: inline-block;
+  color: #000;
+  background-color: var(--first-color-alt);
+  padding: 1rem 2rem;
+  margin: 1.5rem 0;
+  border-radius: 1.5rem .25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 1s all ease;
+}
+
+.btn:hover {
+  background: var(--first-color);
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: relative;
+  padding: 2rem 10%;
+  border-bottom: var(--border);
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  margin: 1.5rem;
+}
+
+.nav-link {
+  color: var(--title-color);
+}
+
+.nav-link:hover {
+  color: var(--first-color);
+  border-bottom: .1rem solid var(--first-color);
+  padding-bottom: .5rem;
+}
+
+.active-link {
+  color: var(--first-color-alt);
+}
+
+.nav-logo img {
+  height: 7rem;
+}
+
+.nav-btn {
+  cursor: pointer;
+  font-size: 1.6rem;
+  display: flex;
+  column-gap: 1.1rem;
+}
+
+.nav-btn i:hover {
+  color: var(--first-color);
+}
+
+#menu-btn {
+  display: none;
+}
+
+.search-form {
+  position: absolute;
+  right: 7%;
+  top: 115%;
+  background: #FFF;
+  width: 15rem;
+  height: 3rem;
+  border-radius: .6rem;
+  display: flex;
+  align-items: center;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.search-form.active {
+  transform: scaleY(1);
+  right: 2rem;
+}
+
+.search-form input {
+  height: 100%;
+  width: 100%;
+  font-size: .750rem;
+  padding: 1rem;
+  border-radius: .6rem;
+  text-transform: none;
+}
+
+.search-form label {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0 .2rem;
+  color: #000;
+}
+
+.search-form label:hover {
+  color: var(--first-color);
+}
+
+.cart-items {
+  position: absolute;
+  top: 100%;
+  right: -100%;
+  width: 22rem;
+  height: calc(100vh - 8rem);
+  background-color: var(--first-color-alt);
+  padding: 0 .9rem;
+  border-radius: .6rem;
+  color: #000;
+}
+
+.cart-item {
+  position: relative;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-items.active {
+  right: 0;
+}
+
+.ri-close-line {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.ri-close-line:hover {
+  color: var(--first-color);
+}
+
+.cart-item img {
+  height: 7rem;
+}
+
+.cart-item h3 {
+  font-size: 1.1rem;
+  padding-bottom: .5rem;
+}
+
+.cart-item .price {
+  font-size: .950rem;
+}
+
+.cart-btn {
+  display: inline-block;
+  color: #FFF;
+  background-color: #000;
+  padding: .9rem 1.5rem;
+  border-radius: .5rem;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.cart-btn:hover {
+  letter-spacing: .5rem;
+  color: var(--first-color-alt);
+}
+
+/*=============== HOME ===============*/
+.home,
+.home-container {
+  position: relative;
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url(../img/home-img.jpeg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home-btn:hover {
+  background-color: var(--first-color);
+}
+
+.home-title h2 {
+  font-family: var(--second-font);
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.home-title span {
+  color: var(--first-color);
+}
+
+.home-description {
+  font-size: 1.1rem;
+  padding: 1.6rem 0;
+  color: var(--text-color);
+}
+
+.home-data {
+  max-width: 60rem;
+}
+
+/*=============== ABOUT ===============*/
+.about,
+.about-container {
+  position: relative;
+}
+
+.about-data {
+  text-align: center;
+  background-color: #343232;
+  border-radius: 2rem;
+  width: 60rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.about-image img {
+  margin: 1rem 0;
+}
+
+.about-description {
+  padding: 1rem;
+  margin: 0 3rem;
+}
+
+.about-title h2 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.about-btn:hover {
+  background-color: var(--first-color);
+}
+
+.about-description p {
+  color: var(--text-color);
+}
+
+.about-description h3 {
+  font-size: 1.5rem;
+  margin: .6rem 0;
+}
+
+/*=============== MENU ===============*/
+.menu-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.menu-product {
+  padding: 3rem;
+  text-align: center;
+  border: var(--border);
+}
+
+.menu-product img {
+  height: 8rem;
+}
+
+.menu-title h2 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.menu-product h3 {
+  font-size: 1.5rem;
+  padding: 1rem 0;
+}
+
+.menu-product .price {
+  font-size: 1.1rem;
+  padding: .5rem 0;
+}
+
+.menu-product .price span {
+  font-size: .9rem;
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+.menu-product:hover {
+  background: hsl(31, 8%, 82%);
+}
+
+.menu-product:hover > * {
+  color: #000;
+}
+
+.menu-btn {
+  display: inline-block;
+  color: #000;
+  background-color: var(--first-color-alt);
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+  border-radius: .3rem;
+  font-weight: 600;
+  transition: background 1s all ease;
+}
+
+.menu-btn:hover {
+  background-color: var(--first-color);
+}
+
+/*=============== PRODUCTS ===============*/
+.products-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.products-item {
+  text-align: center;
+  border: var(--border);
+  padding: 2rem;
+}
+
+.products-title h1 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.products-icon a {
+  font-size: 2rem;
+  border: var(--border);
+  border-radius: .2rem;
+  color: #FFF;
+}
+
+.products-icon a:hover {
+  background: var(--first-color);
+}
+
+.products-image {
+  padding: 2rem 0;
+}
+
+.products-image img {
+  height: 18rem;
+}
+
+.products-content h3 {
+  font-size: 1.5rem;
+}
+
+.stars {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--first-color);
+}
+
+.products-item .price {
+  font-size: 1.1rem;
+}
+
+.products-item .price span {
+  font-size: .9rem;
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+/*=============== REVIEWS ===============*/
+.review-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+}
+
+.review-content {
+  text-align: center;
+  border: var(--border);
+  padding: 3rem 2rem;
+}
+
+.review-title h1 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.review-title span {
+  color: var(--first-color-alt);
+}
+
+.review-content p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #ccc;
+  padding: 2rem 0;
+}
+
+.review-content h3 {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.customer {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/*=============== CONTACT ===============*/
+.contact,
+.contact-data {
+  position: relative;
+}
+
+.contact-data {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #343232;
+  border-radius: 2rem;
+  margin: 0 auto;
+  width: 60rem;
+}
+
+.contact-title h1 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-title span {
+  color: var(--first-color-alt)
+}
+
+.contact-map {
+  flex: 1 1 45rem;
+  border-radius: 2rem;
+}
+
+.contact-form {
+  flex: 1 1 45rem;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+form .inputBox {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+  border: var(--border);
+  border-radius: 1rem;
+}
+
+form .inputBox span {
+  font-size: 1.7rem;
+  padding-left: 2rem;
+}
+
+form .inputBox input {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 2rem;
+  color: #FFF;
+  text-transform: none;
+  background: none;
+  border: none;
+}
+
+.contact-btn {
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 1.2rem 4rem;
+}
+
+.contact-btn:hover {
+  background: var(--first-color);
+  letter-spacing: .5rem;
+}
+
+/*=============== BLOG ===============*/
+.blog,
+.blog-data {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+}
+
+.blog-content {
+  border: var(--border);
+}
+
+.blog-title h1 {
+  font-family: var(--second-font);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.blog-image {
+  height: 20rem;
+  overflow: hidden;
+}
+
+.blog-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-image:hover img {
+  transform: scale(1.2);
+}
+
+.blog-content {
+  padding: 2rem;
+}
+
+.blog-description {
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #FFF;
+}
+
+.blog-description:hover {
+  color: var(--first-color-alt);
+}
+
+.blog-content span {
+  color: var(--first-color-alt);
+  display: block;
+  padding: .5rem 0;
+  font-size: 1.1rem;
+}
+
+.blog-content p {
+  font-size: 1.3rem;
+  color: #ccc;
+  line-height: 1.8;
+  padding: 1rem 0;
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  text-align: center;
+}
+
+.footer-icons {
+  padding: 1rem 0;
+}
+
+.footer-icons a {
+  line-height: 5rem;
+  font-size: 2rem;
+  color: #FFF;
+  border: var(--border);
+  margin: .3rem;
+  padding: .5rem;
+  border-radius: 50%;
+}
+
+.footer-icons a:hover {
+  background-color: var(--first-color);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: #FFF;
+  padding: .7rem 2rem;
+  font-size: 1.2rem;
+  border: var(--border);
+  border-radius: 1.5rem .25rem;
+}
+
+.footer-links a:hover {
+  background-color: var(--first-color);
+}
+
+.credit {
+  font-size: 1.1rem;
+  opacity: .7;
+  padding: 1.5rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 400px) {
+  .home-container {
+    width: 80vh;
+  }
+
+  .about,
+  .about-container {
+    width: 76vh;
+    margin: 0 auto;
+  }
+
+  .menu,
+  .menu-container {
+    width: 76vh;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 767px) {
+  .nav {
+    height: 3rem;
+  }
+
+  .nav-logo img {
+    height: 6rem;
+  }
+
+  .home-title h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  .nav-btn {
+    font-size: 1.1rem;
+  }
+
+  .search-form {
+    top: 7.5rem;
+  }
+
+  .about-data {
+    width: 33rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .about-title h2 {
+    font-size: 1.6rem;
+  }
+}
+/* For medium devices */
+@media screen and (max-width: 991px) {
+  .nav-btn {
+    margin: 0 2rem;
+  }
+
+  #menu-btn {
+    display: inline-block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 22rem;
+    height: calc(100vh - 8rem);
+    background-color: var(--first-color-alt);
+    padding: 0 .9rem;
+    border-radius: .6rem;
+  }
+
+  .nav-link {
+    display: block;
+    margin: 1.5rem 0;
+    padding: .5rem;
+    font-size: 1rem;
+    color: #000;
+  }
+
+   .nav-btn {
+     position: absolute;
+     right: 0;
+   }
+
+   .nav-menu.active {
+     right: 0;
+  }
+}
